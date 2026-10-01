@@ -1,3 +1,4 @@
+"Zack Mitra"
 from collections import defaultdict
 
 def supersort(a, k):
@@ -30,6 +31,12 @@ def count_values(a, k):
     [2, 3, 2, 1]
     """
     ###TODO
+    counts = [0] * (k + 1)
+
+    for value in a:
+        counts[value] += 1
+
+    return counts
     pass
     
 def get_positions(counts):
@@ -44,6 +51,8 @@ def get_positions(counts):
     [0, 2, 5, 7]    
     """
     ###TODO
+    prefix_sums, total = scan(plus, 0, counts)
+    return [0] + prefix_sums[:-1]
     pass
     
 def construct_output(a, positions):
@@ -61,6 +70,13 @@ def construct_output(a, positions):
     [0,0,1,1,1,2,2,3]    
     """
     ###TODO
+    output = [0] * len(a)
+
+    for value in a:
+        output[positions[value]] = value
+        positions[value] += 1
+
+    return output
     pass
 
 def count_values_mr(a, k):
@@ -76,10 +92,13 @@ def count_map(value):
     # hint: this function should return a list, even if that list
     # contains a single tuple
     ###TODO
+    return [(value, 1)]
     pass
 
 def count_reduce(group):
     ###TODO
+    value, counts = group
+    return (value, sum(counts))
     pass
 
 
